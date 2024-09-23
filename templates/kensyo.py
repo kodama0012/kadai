@@ -51,12 +51,12 @@ def upload_file():
 
 
 # 自PCでのチェック用
-"""
+
 if __name__ == "__main__":
     app.run()
 """
-
 # Render公開用
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
     app.run(host ='0.0.0.0',port = port)
+"""
