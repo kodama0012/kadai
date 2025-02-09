@@ -1,8 +1,8 @@
 import os
 from flask import Flask, request, redirect, render_template, flash
-from werkzeug.utils import secure_filename
-from tensorflow.keras.models import Sequential, load_model
-from tensorflow.keras.preprocessing import image
+from werkzeug.utils import secure_filename	
+from tensorflow.python.keras.models import Sequential, load_model
+from tensorflow.python.keras import image
 
 import numpy as np
 
@@ -18,8 +18,7 @@ app = Flask(__name__)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-model = load_model('./model.h5')#学習済みモデルをロード
-
+model = load_model('./model/model.h5')#学習済みモデルをロード
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -49,14 +48,12 @@ def upload_file():
 
     return render_template("index.html",answer="")
 
-
+"""
 # 自PCでのチェック用
-
 if __name__ == "__main__":
     app.run()
 """
 # Render公開用
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 8080))
-    app.run(host ='0.0.0.0',port = port)
-"""
+    port = int(os.environ.get('PORT', 3000))
+    app.run(host ='192.168.11.3',port = port)
